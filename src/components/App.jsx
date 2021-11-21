@@ -1,6 +1,11 @@
 import React from "react";
 
 function App() {
+
+  const items = ["item1", "item2", "item3"];
+  const listItems = items.map((item) =>
+    <li>{item}</li>);
+
   return (
     <div className="container">
       <div className="heading">
@@ -14,7 +19,7 @@ function App() {
       </div>
       <div>
         <ul>
-          <li>A Item </li>
+          {listItems}
         </ul>
       </div>
     </div>
