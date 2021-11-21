@@ -1,16 +1,26 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 function App() {
 
-  const items = ["item1", "item2", "item3"];
+  const items = [
+    { Id: 1, text: "item 1" },
+    { Id: 2, text: "item 2" },
+    { Id: 3, text: "item 3" }];
+
+  var itemCount=items.length;
+
   const listItems = items.map((item) =>
-    <li>{item}</li>);
+    <li key={item.Id}>{item.text}</li>);
 
   const [toDoItem, setToDoItem] = useState("");
 
-  function handleChange(event){
-    const newItem = event.target.value
+  function handleChange(event) {
+    const newItem = event.target.value;
     setToDoItem(newItem);
+  }
+
+  function handleClick(event){
+
   }
 
   return (
@@ -19,7 +29,7 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input onChange = {handleChange} value={toDoItem} type="text" />
+        <input onChange={handleChange} value={toDoItem} type="text" />
         <button>
           <span>Add</span>
         </button>
