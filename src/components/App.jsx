@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 function App() {
 
@@ -6,13 +6,20 @@ function App() {
   const listItems = items.map((item) =>
     <li>{item}</li>);
 
+  const [toDoItem, setToDoItem] = useState("");
+
+  function handleChange(event){
+    const newItem = event.target.value
+    setToDoItem(newItem);
+  }
+
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input type="text" />
+        <input onChange = {handleChange} value={toDoItem} type="text" />
         <button>
           <span>Add</span>
         </button>
