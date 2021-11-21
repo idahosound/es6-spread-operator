@@ -7,10 +7,14 @@ function App() {
     { Id: 2, text: "item 2" },
     { Id: 3, text: "item 3" }];
 
-  var itemCount=items.length;
+  var itemCount = items.length;
 
-  const listItems = items.map((item) =>
-    <li key={item.Id}>{item.text}</li>);
+  function makeList() {
+    return items.map((item) =>
+      <li key={item.Id}>{item.text}</li>)
+  }
+
+  const [listItems, setListItems] = useState(makeList);
 
   const [toDoItem, setToDoItem] = useState("");
 
@@ -19,8 +23,11 @@ function App() {
     setToDoItem(newItem);
   }
 
-  function handleClick(event){
-
+  function handleClick() {
+    const addItem = { Id: itemCount + 1, text: toDoItem };
+    items.push(addItem);
+    setListItems(makeList);
+    setToDoItem("");
   }
 
   return (
@@ -30,7 +37,7 @@ function App() {
       </div>
       <div className="form">
         <input onChange={handleChange} value={toDoItem} type="text" />
-        <button>
+        <button onClick={handleClick}>
           <span>Add</span>
         </button>
       </div>
