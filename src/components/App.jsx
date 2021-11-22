@@ -13,7 +13,7 @@ function App() {
 
   function handleClick() {
     const itemCount = listItems.length;
-    setListItems( (prevItems) => [...prevItems, {key: itemCount, text: toDoItem}] );
+    setListItems((prevItems) => [...prevItems, { Id: itemCount + 1, text: toDoItem }]);
     setToDoItem("");
   }
 
@@ -30,7 +30,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {listItems.map({item} => <ListItem /> )}
+          {listItems.map((item) => <ListItem key={item.Id} text={item.text} />)}
         </ul>
       </div>
     </div>
