@@ -5,6 +5,7 @@ function App() {
 
   const [listItems, setListItems] = useState([]);
   const [toDoItem, setToDoItem] = useState("");
+  const [idCount, setIdCount] = useState(0)
 
   function handleChange(event) {
     const newItem = event.target.value;
@@ -12,9 +13,20 @@ function App() {
   }
 
   function handleClick() {
-    const itemCount = listItems.length;
-    setListItems((prevItems) => [...prevItems, { Id: itemCount + 1, text: toDoItem }]);
+    setIdCount(idCount + 1);
+    setListItems((prevItems) => [...prevItems, { Id: idCount, text: toDoItem }]);
     setToDoItem("");
+  }
+
+  function deleteItem(thisOne){
+    console.log("item clicked is " + thisOne);
+    console.log(listItems);
+    setListItems(prevItems=>{
+      return prevItems.filter(
+        (item, Id)=>{
+          return Id !== thisOne;
+        });
+    });
   }
 
   return (
@@ -30,7 +42,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {listItems.map((item) => <ListItem key={item.Id} text={item.text} />)}
+          {listItems.map((item) => <ListItem key={item.Id} Id={item.Id} text={item.text} onChecked={deleteItem} />)}
         </ul>
       </div>
     </div>

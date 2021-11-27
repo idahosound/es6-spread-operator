@@ -1,13 +1,11 @@
 import React from "react";
 
-function ListItem(props) {
+function ListItem(props) { 
 
-    function handleClick() {
-       
-
-    }
     return (
-        <div onClick={handleClick}>
+        <div onClick={()=>{
+            props.onChecked(props.Id)
+        }}>
             <li>{props.text}</li>
         </div>
     );
